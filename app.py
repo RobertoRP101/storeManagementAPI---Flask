@@ -68,7 +68,7 @@ def get_store(name):
 
 # This method gets a specific store and returns its items
 @app.get("/store/<string:name>")
-def get_store(name):
+def get_items(name):
     for store in stores:
         if store['name'] == name:
             return {"items": store['items']}
