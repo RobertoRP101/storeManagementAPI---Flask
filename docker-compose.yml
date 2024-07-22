@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000" # Map the local machine port to the caontainer port
+    volumes:
+      - .:/app  # We are going to copy and keep in sync the current directory with the app directory inside the container
