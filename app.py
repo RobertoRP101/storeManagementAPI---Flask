@@ -14,7 +14,18 @@ stores = [
                 "price": 15.99
             }
         ]
-    }     
+        
+    },
+    {
+        "name": "My store 2",
+        "items": [
+            {
+                "name": "Sofa",
+                "price": 39.99
+            }
+        ]
+        
+    }        
 ]
 
 # This method displays the stores, items inside each store and the name of the store
@@ -42,9 +53,16 @@ def create_item(name): # This signature function receives a paramenter from the 
     for store in stores:
         if store['name'] == name:  
             new_item = {"name": request_data['name'], "price": request_data['price']} 
-            stores['item'].append(new_item)
+            store['items'].append(new_item)
             return new_item, 201
     return {'message': 'Store not found'}, 404 # This line returns a known error since there is not a match from the
 # name of a existed store            
             
+# This method gets a specific store and its items
+@app.get("/store/<string:name>")
+def get_store(name):
+    for store in stores:
+        if store['name'] == name:
+            return store
+    return {'message': 'Store not found'}, 404
     
