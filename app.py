@@ -5,28 +5,40 @@ app = Flask(__name__)
 # Where we are going to store our data?
 
 # List storage
-stores = [
-    {
-        "name": "My store",
-        "items": [
-            {
-                "name": "Chair",
-                "price": 15.99
-            }
-        ]
+# stores = [
+#     {
+#         "name": "My store",
+#         "items": [
+#             {
+#                 "name": "Chair",
+#                 "price": 15.99
+#             }
+#         ]
         
+#     },
+#     {
+#         "name": "My store 2",
+#         "items": [
+#             {
+#                 "name": "Sofa",
+#                 "price": 39.99
+#             }
+#         ]
+        
+#     }        
+# ]
+
+stores = {}
+items = {
+    1: {
+        "name": "Chair",
+        "price": 17.99
     },
-    {
-        "name": "My store 2",
-        "items": [
-            {
-                "name": "Sofa",
-                "price": 39.99
-            }
-        ]
-        
-    }        
-]
+    2: {
+        "name": "Sofa",
+        "price": 99.99
+    }
+}
 
 # This method displays the stores, items inside each store and the name of the store
 @app.get("/store") # This decorator defines the HTTP's method and the route (GET)
