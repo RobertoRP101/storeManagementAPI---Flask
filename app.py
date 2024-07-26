@@ -1,3 +1,4 @@
+import uuid
 from flask import Flask, request
 from .db import stores, items
 app = Flask(__name__)
@@ -38,10 +39,11 @@ def get_stores():
 # This method creates a new storage on store list variable
 @app.post("/store") # This decorator defines the HTTP's method and the route (POST)
 def create_store():
-    request_data = request.get_json() # This line catches the answer of the client
-    new_store = {"name": request_data['name'], "items": []} # This line retrieves the variable needed to create a store
-    stores.append(new_store) # This line adds the new store to the list
-    return new_store, 201 # This line return a HTTP response
+    store_data = request.get_json() # This line catches the answer of the client
+    store_id = uuid.uuid4().hex # This line create a unique universal id which will be assigned to the new store
+    store = {**store_data, "id": store_id} # This line unpacks the variable store_data and save it with store_id
+    stores[store_id] = store # This line adds the new store to the dictionary
+    return store, 201 # This line return a HTTP response
 
 # Ways to retrieve information from the URL
 # localhost/store/My store
