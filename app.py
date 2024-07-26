@@ -1,5 +1,5 @@
 from flask import Flask, request
-
+from .db import stores, items
 app = Flask(__name__)
 
 # Where we are going to store our data?
@@ -28,17 +28,7 @@ app = Flask(__name__)
 #     }        
 # ]
 
-stores = {}
-items = {
-    1: {
-        "name": "Chair",
-        "price": 17.99
-    },
-    2: {
-        "name": "Sofa",
-        "price": 99.99
-    }
-}
+
 
 # This method displays the stores, items inside each store and the name of the store
 @app.get("/store") # This decorator defines the HTTP's method and the route (GET)
