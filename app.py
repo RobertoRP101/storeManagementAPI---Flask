@@ -61,12 +61,19 @@ def create_item(name): # This signature function receives a paramenter from the 
 # name of a existed store            
             
 # This method returns a store and its items
-@app.get("/store/<string:name>")
-def get_store(name):
-    for store in stores:
-        if store['name'] == name:
-            return store
-    return {'message': 'Store not found'}, 404
+# @app.get("/store/<string:name>")
+# def get_store(name):
+#     for store in stores:
+#         if store['name'] == name:
+#             return store
+#     return {'message': 'Store not found'}, 404
+
+@app.get("/store/<string:store_id>")
+def get_store(store_id):
+    try:
+        return stores[store_id]
+    except KeyError:
+        return {'message': 'Store not found'}, 404
 
 # This method gets a specific store and returns its items
 @app.get("/store/<string:name>")
