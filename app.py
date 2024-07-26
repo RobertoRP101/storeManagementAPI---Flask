@@ -33,7 +33,7 @@ app = Flask(__name__)
 # This method displays the stores, items inside each store and the name of the store
 @app.get("/store") # This decorator defines the HTTP's method and the route (GET)
 def get_stores():
-    return {"stores": stores}
+    return {"stores": list(stores.values())}
 
 # This method creates a new storage on store list variable
 @app.post("/store") # This decorator defines the HTTP's method and the route (POST)
