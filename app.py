@@ -50,17 +50,32 @@ def create_store():
 # localhost/store?name=My store
 
 # localhost/store/My store/item
-@app.post("/store/<string:name>/item") # This decorator defines the HTTP's method and the route (POST) and retrieve the data
+# @app.post("/store/<string:name>/item") # This decorator defines the HTTP's method and the route (POST) and retrieve the data
+# # from the URL after the domain
+# def create_item(name): # This signature function receives a paramenter from the URL 
+#     request_data = request.get_json() # This line catches the answer of the client
+#     for store in stores:
+#         if store['name'] == name:  
+#             new_item = {"name": request_data['name'], "price": request_data['price']} 
+#             store['items'].append(new_item)
+#             return new_item, 201
+#     return {'message': 'Store not found'}, 404 # This line returns a known error since there is not a match from the
+# # name of a existed store            
+
+
+@app.post("/item") # This decorator defines the HTTP's method and the route (POST) and retrieve the data
 # from the URL after the domain
 def create_item(name): # This signature function receives a paramenter from the URL 
-    request_data = request.get_json() # This line catches the answer of the client
+    item_data = request.get_json() # This line catches the answer of the client
+    if item_data["store_id"] not in stores:
+        return {"message": "Store not found"}, 404
     for store in stores:
         if store['name'] == name:  
             new_item = {"name": request_data['name'], "price": request_data['price']} 
             store['items'].append(new_item)
             return new_item, 201
     return {'message': 'Store not found'}, 404 # This line returns a known error since there is not a match from the
-# name of a existed store            
+# name of a existed store       
             
 # This method returns a store and its items
 # @app.get("/store/<string:name>")
