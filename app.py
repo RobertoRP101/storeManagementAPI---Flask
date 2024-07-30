@@ -72,7 +72,7 @@ def create_item():
     item_id = uuid.uuid4().hex # This line create a unique universal id which will be assigned to the new store
     item = {**item_data, "id": item_id} # This line unpacks the variable store_data and save it with store_id
     stores[item_id] = item # This line adds the new store to the dictionary
-    return {'message': 'Store not found'}, 404 # This line returns a known error since there is not a match from the
+    return item, 201 # This line returns a known error since there is not a match from the
 # name of a existed store       
             
 # This method returns a store and its items
