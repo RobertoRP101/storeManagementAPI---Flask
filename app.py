@@ -75,6 +75,11 @@ def create_item():
     return item, 201 # This line returns a known error since there is not a match from the
 # name of a existed store       
             
+            
+@app.get("/item")
+def get_all_items():
+    return {"items": list(items.values())}
+            
 # This method returns a store and its items
 # @app.get("/store/<string:name>")
 # def get_store(name):
