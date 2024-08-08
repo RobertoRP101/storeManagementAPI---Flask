@@ -103,4 +103,10 @@ def get_items(name):
             return {"items": store['items']}
     return {'message': 'Store not found'}, 404
 
+@app.get("/item/<string:item_id>")
+def get_item(item_id):
+    try:
+        return items[item_id]
+    except KeyError:
+        return {'message': 'Item not found'}, 400
     
